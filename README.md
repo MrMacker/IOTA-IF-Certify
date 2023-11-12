@@ -6,7 +6,7 @@ IOTA Certify provides a tool to manage identities and credentials as holder and 
 git clone https://github.com/jlvandenhout/iota-certify.git
 
 2. Change directory to the root of the repository:
-cd iota-certify
+#cd iota-certify
 
 3. Install the dependencies:
 npm install
