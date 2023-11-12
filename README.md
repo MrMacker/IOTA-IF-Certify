@@ -3,19 +3,19 @@ IOTA Certify provides a tool to manage identities and credentials as holder and 
 
 # Usage
 1. Clone the repository:
- - git clone https://github.com/MrMacker/IOTA-IF-Certify
+   - git clone https://github.com/MrMacker/IOTA-IF-Certify
 
 2. Change directory to the root of the repository:
- - cd iota-certify
+   - cd iota-certify
 
 3. Install the dependencies:
- - npm install
+   - npm install
 
 4. Build the project:
- - npm run build
+   - npm run build
 
 5. Run the program:
- - node .
+   - node .
 
 # Scenario
 At this stage the software coding is not interactive yet and only verifies one credential. - Proof of Concept Only (PoC)
