@@ -53,7 +53,7 @@ Production
 
     Persist secrets securely.
     Persist private keys securely.
-    Use specification like OpenID for standardized presentation requests and exchange.
+    Use specification like OpenIDhttps://openid.net/specs/openid-4-verifiable-presentations-1_0.html for standardized presentation requests and exchange.
 
 
 
