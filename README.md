@@ -29,7 +29,10 @@ As a proof of concept we seek to get full insight in the process of creating, ma
 
 # DID derivation
 
-The [IOTA Identity framework](https://wiki.iota.org/identity.rs/introduction/) builds on top of [alias outputs](https://wiki.iota.org/tips/tips/TIP-0018/#alias-output) provided by the IOTA protocol, which in turn are controlled by addresses derived from a seed using BIP32 key derivation. While this allows the derivation of a near limitless amount of DIDs from a single seed, in this proof of concept we limit ourselves to the creation of a single DID document and consequently a single DID per seed for each entity.
+The [IOTA Identity framework](https://wiki.iota.org/identity.rs/introduction/) builds on top of [alias outputs](https://wiki.iota.org/tips/tips/TIP-0018/#alias-output) provided by the IOTA protocol, which in turn are controlled by addresses derived from a seed using [BIP32](https://en.bitcoin.it/wiki/BIP_0032) key derivation. While this allows the derivation of a near limitless amount of DIDs from a single seed, in this proof of concept we limit ourselves to the creation of a single DID document and consequently a single DID per seed for each entity.
+
+# Storage Deposit
+
 
 
 
