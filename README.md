@@ -41,6 +41,7 @@ At this stage the software coding This is not implemented yet. - Proof of Concep
 At its core, DID works by providing proof of authenticity in the form of signatures which are verified against public keys. Anyone with access to a private key is able to produce a valid signature. Therefore private keys must be handled in a secure manner, preferably using a secure key management system. IOTA Identity was designed to work with any key management system through an [abstraction layer](https://wiki.iota.org/identity.rs/concepts/key_storage/), requiring a program to implement the JwkStorage and KeyIdStorage interfaces for a specific key management system. In this proof of concept we implement an unsecure key management system which stores private keys unencrypted, to be able to inspect them.
 
 # TODO
+Use specification like [OpenID](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) for standardised presentation requests and exchange
 
 Proof of concept
 
@@ -53,9 +54,6 @@ Production
 
     Persist secrets securely.
     Persist private keys securely.
-    Use specification like [[OpenID](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html )https://openid.net/specs/openid-4-verifiable-presentations-1_0.html ] for standardized presentation requests and exchange.
-
-
 
 
 
