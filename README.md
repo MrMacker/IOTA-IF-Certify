@@ -20,7 +20,7 @@ IOTA Certify provides a tool to manage identities and credentials as holder and 
 # Scenario
 At this stage the software coding is not interactive yet and only verifies one credential. - Proof of Concept Only (PoC)
 
-This proof of concept aims to provide tools to support the scenario where a holder H is required by a verifier V to hold credentials, issued by an issuer I from the set of issuers approved by the verifier, that prove H has sufficiently recent experience to fulfill duties on behalf of some party X. Both H and X (on behalf of H), should be able to provide this proof to V, while H stays in control of what is shared and minimizing the the need to query I.
+This proof of concept aims to provide tools to support the scenario where a holder (H) is required by a verifier V to hold credentials, issued by an issuer I from the set of issuers approved by the verifier, that prove H has sufficiently recent experience to fulfill duties on behalf of some party X. Both H and X (on behalf of H), should be able to provide this proof to V, while H stays in control of what is shared and minimizing the the need to query I.
 
 # Design
 At this stage the software coding nothing is persisted to disk yet. - Proof of Concept Only (PoC)
