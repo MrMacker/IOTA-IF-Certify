@@ -33,6 +33,16 @@ The [IOTA Identity framework](https://wiki.iota.org/identity.rs/introduction/) b
 
 # Storage Deposit
 
+IOTA is a decentralized ledger technology (DLT) aiming to provide fair access to anyone. To prevent intentional or unintentional misuse of available bandwidth and storage space in the network, any DLT has to limit the use of those resources. IOTA is no exception to that. The IOTA protocol limits storage space usage by requiring a [storage deposit](https://wiki.iota.org/learn/protocols/stardust/core-concepts/storage-deposit/) depending on the amount of storage space used. This storage desposit is returned to the user when storage space is no longer required by the user. Since we are storing DID documents in alias outputs on the ledger, we use storage space and are required to deposit an amount of tokens while holding the DID document on the ledger. Normally these tokens have to be acquired, but in this proof of concept we connect to the [testnet](https://wiki.iota.org/build/networks-endpoints/#public-testnet), which has a token faucet available where we can request tokens for free.
+
+# DID Key Management
+At this stage the software coding This is not implemented yet. - Proof of Concept Only (PoC)
+
+At its core, DID works by providing proof of authenticity in the form of signatures which are verified against public keys. Anyone with access to a private key is able to produce a valid signature. Therefore private keys must be handled in a secure manner, preferably using a secure key management system. IOTA Identity was designed to work with any key management system through an [abstraction layer](https://wiki.iota.org/identity.rs/concepts/key_storage/), requiring a program to implement the JwkStorage and KeyIdStorage interfaces for a specific key management system. In this proof of concept we implement an unsecure key management system which stores private keys unencrypted, to be able to inspect them.
+
+
+
+
 
 
 
