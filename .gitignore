@@ -1,0 +1,4 @@
+#plaintext
+.vscode
+node_modules
+dist
