@@ -1,163 +1,95 @@
-import {
-  IotaIdentityClient,
-  JwkMemStore,
-  KeyIdMemStore,
-  IotaDocument,
-  JwsAlgorithm,
-  MethodScope,
-  RevocationBitmap,
-  Storage,
-} from "@iota/identity-wasm/node";
-import { Client, Utils } from "@iota/sdk-wasm/node";
-import { BuildCredential } from "./credential";
-import { CreatePresentationResponse } from "./presentation";
-import {
-  IdentityWalletOptions,
-  IdentityState,
-  CoverStorageDeposit,
-} from "./types";
-import { Build, deriveAddressFromMnemonic } from "./utils";
+import { IdentityWallet } from "./identity";
+import { Verifier } from "./verifier";
+import ProofOfConcept from "./POC";
+import { Duration, IotaIdentityClient } from "@iota/identity-wasm/node";
+import { delay } from "./utils";
 
-export class IdentityWallet {
-  private client: IotaIdentityClient;
+// This is implementing anything needed for the proof of concept.
+const PROOF_OF_CONCEPT = new ProofOfConcept();
 
-  constructor(options: IdentityWalletOptions) {
-    this.client = new IotaIdentityClient(options.client);
-  }
+async function main() {
+  // Create a wallet to manage identities.
+  const wallet = await IdentityWallet.new()
+    .withClient(PROOF_OF_CONCEPT.client)
+    .create();
 
-  static new() {
-    return new BuildIdentityWallet({});
-  }
+  // Use the wallet to generate identities for Hans and the college.
+  console.log("Generating an identity for Hans...");
+  const hans = await wallet
+    .generateIdentity()
+    .withVerificationMethod("verify")
+    .withStorageDepositCovered(PROOF_OF_CONCEPT.coverStorageDeposit)
+    .create();
+  console.log("Explorer URL:", await PROOF_OF_CONCEPT.linkToAliasOutput(hans));
 
-  generateIdentity() {
-    const action = async () => {
-      const network = await this.client.getNetworkHrp();
-      const mnemonic = Utils.generateMnemonic();
+  console.log("Generating an identity for the college...");
+  const college = await wallet
+    .generateIdentity()
+    .withVerificationMethod("verify")
+    .withRevocationService("revoke")
+    .withStorageDepositCovered(PROOF_OF_CONCEPT.coverStorageDeposit)
+    .create();
+  console.log(
+    "Explorer URL:",
+    await PROOF_OF_CONCEPT.linkToAliasOutput(college)
+  );
 
-      const storage = new Storage(new JwkMemStore(), new KeyIdMemStore());
-      const address = await deriveAddressFromMnemonic(network, mnemonic);
-      const document = new IotaDocument(network);
+  // Create a verifier for the CRU.
+  const cru = await Verifier.new().withClient(PROOF_OF_CONCEPT.client).create();
 
-      console.log("Address:", address);
+  // Let the college issue a credential for Hans.
+  console.log("Generating a credential for Hans issued by the college...");
+  const credential = await college
+    .generateCredential()
+    .withSubject(hans)
+    .withProperty("degree", "Degree")
+    .withVerificationMethod("verify")
+    .withRevocationStatus("revoke", 1)
+    .create();
 
-      return {
-        client: this.client,
-        mnemonic,
-        storage,
-        address,
-        document,
-      };
-    };
+  // Let the CRU request credentials from Hans.
+  // In this proof of concept the request and response are simply passed to
+  // the appropriate functions. In a production grade program, it is adviced
+  // to implement a standardized exchange specification, like [OpenID](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html).
+  console.log("Requesting a presentation from Hans...");
+  const request = await cru
+    .generatePresentationRequest()
+    .withPredicate(PROOF_OF_CONCEPT.notOlderThan(Duration.seconds(5)))
+    .withNonce(PROOF_OF_CONCEPT.generateNonce())
+    .create();
 
-    const state = action();
-    return new BuildIdentity(state);
-  }
+  // Let Hans gather credentials that meet the requested requirements in a presentation
+  // and generate a response.
+  console.log("Generating a presentation response for Hans...");
+  const response = await hans
+    .generatePresentationResponse()
+    .withNonce(request.nonce)
+    .withCredential(credential)
+    .withVerificationMethod("verify")
+    .create();
+
+  // Let the CRU verify the response signatures and credentials and validate
+  // the credentials against the requirements of the request.
+  // NOTE: This validation should succeed.
+  console.log("Validating the presentation response from Hans...");
+  await cru
+    .generatePresentationValidation()
+    .withRequest(request)
+    .withResponse(response)
+    .create();
+
+  // Wait 5 seconds.
+  await delay(Duration.seconds(5));
+
+  // Let the CRU again verify the response signatures and credentials and validate
+  // the credentials against the requirements of the request.
+  // NOTE: This validation should fail because the credential is too old.
+  console.log("Validating the presentation response from Hans...");
+  await cru
+    .generatePresentationValidation()
+    .withRequest(request)
+    .withResponse(response)
+    .create();
 }
 
-class BuildIdentityWallet extends Build<IdentityWalletOptions, IdentityWallet> {
-  withClient(client: Client) {
-    return this.update((state) => {
-      state.client = client;
-      return state;
-    });
-  }
-
-  create() {
-    return this.finalize((state) => {
-      return new IdentityWallet(state);
-    });
-  }
-}
-
-class BuildIdentity extends Build<IdentityState, Identity> {
-  withVerificationMethod(fragment: string) {
-    return this.update(async (state) => {
-      await state.document.generateMethod(
-        state.storage,
-        JwkMemStore.ed25519KeyType(),
-        JwsAlgorithm.EdDSA,
-        fragment,
-        MethodScope.VerificationMethod()
-      );
-
-      return state;
-    });
-  }
-
-  withRevocationService(fragment: string) {
-    return this.update(async (state) => {
-      const revocationBitmap = new RevocationBitmap();
-      const serviceUrl = state.document.id().join(`#${fragment}`);
-      const service = revocationBitmap.toService(serviceUrl);
-      state.document.insertService(service);
-
-      return state;
-    });
-  }
-
-  withStorageDepositCovered(coverStorageDeposit: CoverStorageDeposit) {
-    return this.update(async (state) => {
-      const output = await state.client.newDidOutput(
-        Utils.parseBech32Address(state.address),
-        state.document
-      );
-      const rentStructure = await state.client.getRentStructure();
-      const tokensRequired = Utils.computeStorageDeposit(output, rentStructure);
-
-      await coverStorageDeposit(state.address, tokensRequired);
-
-      return state;
-    });
-  }
-
-  async create() {
-    return this.finalize(async (state) => {
-      const output = await state.client.newDidOutput(
-        Utils.parseBech32Address(state.address),
-        state.document
-      );
-
-      state.document = await state.client.publishDidOutput(
-        { mnemonic: state.mnemonic },
-        output
-      );
-
-      console.log("DID:", state.document.id().toString());
-
-      return new Identity(state);
-    });
-  }
-}
-
-export class Identity {
-  client: IotaIdentityClient;
-  address: string;
-  storage: Storage;
-  document: IotaDocument;
-  mnemonic: string;
-
-  constructor(state: IdentityState) {
-    Object.assign(this, state);
-  }
-
-  generateCredential() {
-    const action = async () => {
-      const state = {
-        issuer: this,
-        properties: {},
-      };
-
-      return state;
-    };
-
-    const state = action();
-    return new BuildCredential(state);
-  }
-
-  generatePresentationResponse() {
-    return new CreatePresentationResponse({
-      holder: this,
-      credentials: [],
-    });
-  }
-}
+main();
