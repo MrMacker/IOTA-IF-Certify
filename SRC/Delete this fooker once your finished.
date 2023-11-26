@@ -1,21 +1,40 @@
-[00:53] Frankie Brogan
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       sudo apt update
-sudo apt update
- 
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
- 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
- 
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
- 
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-[00:56] Frankie Brogan
 sudo apt update
  
 sudo apt install docker-ce
- 
+
+//mark@mark-VirtualBox:~/IOTA Folder/did-api-main$ sudo systemctl start docker
+Job for docker.service failed because the control process exited with error code.
+See "systemctl status docker.service" and "journalctl -xeu docker.service" for details.
 sudo systemctl start docker
- 
+
+//mark@mark-VirtualBox:~/IOTA Folder/did-api-main$ sudo systemctl enable docker
+Synchronizing state of docker.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable docker
 sudo systemctl enable docker
- 
-sudo docker --version
+
+//mark@mark-VirtualBox:~/IOTA Folder/did-api-main$ sudo docker --version 
+Docker version 24.0.7, build afdd53b
+sudo docker --version    
+
+//mark@mark-VirtualBox:~/IOTA Folder/did-api-main$ sudo apt install apt-transport-https ca-certificates curl software-properties-common
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+ca-certificates is already the newest version (20230311ubuntu0.22.04.1).
+curl is already the newest version (7.81.0-1ubuntu1.14).
+software-properties-common is already the newest version (0.99.22.8).
+apt-transport-https is already the newest version (2.4.11).
+The following packages were automatically installed and are no longer required:
+  bridge-utils ubuntu-fan
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+//Curl command is depricated. (Key is stored in legacy trusted.gpg keyring)
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+//Something abount deprication also. (Key is stored in legacy trusted.gpg keyring)
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+//Something abount deprication also. (Key is stored in legacy trusted.gpg keyring)
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sudo apt update
