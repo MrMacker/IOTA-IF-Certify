@@ -25,7 +25,7 @@ This proof of concept aims to provide tools to support the scenario where a hold
 # Design
 At this stage the software coding nothing is persisted to disk yet. - Proof of Concept Only (PoC)
 
-As a proof of concept I will seek to get full insight in the process of creating, managing, and verifying Decentralised Identities (DID) documents and credentials. Ad as such, at this early stage this PoC does not adhere to security standards when dealing with secret Key management, where a production grade implementation must. For example, seeds and private keys are commited to disk unsecured.
+As a proof of concept I will seek to get full insight in the process of creating, managing, and verifying Decentralised Identities (DID) documents and credentials. And as such, at this early stage this PoC does not adhere to security standards when dealing with secret Key management, where a production grade implementation must. For example, seeds and private keys are commited to disk unsecured.
 
 # DID derivation
 
