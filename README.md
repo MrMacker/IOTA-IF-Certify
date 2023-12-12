@@ -11,16 +11,16 @@ This project is a proof of concept of decentralized identity and verifiable cred
   - git clone https://github.com/MrMacker/IOTA-IF-Certify
 
 2. Change directory to the root of the repository:
-   - cd iota-certify
+  - cd iota-if-certify
 
 3. Install the dependencies:
-   - npm install
+ - npm install
 
 4. Build the project:
-   - npm run build
+ - npm run build
 
 5. Run the program:
-   - node .
+  - npm run Hans-example
 
 # Scenario
 At this stage the software coding is not interactive yet and only verifies one credential. - Proof of Concept Only (PoC)
