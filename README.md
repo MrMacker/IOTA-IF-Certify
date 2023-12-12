@@ -2,9 +2,9 @@
 This project is a proof of concept of decentralized identity and verifiable credentials on IOTA decentralized ledger technology. It contains an abstraction layer to the IOTA Identity library, to more clearly indicate what steps are needed to create and verify decentralized identities and verifiable credentials. It also contains an example using this abstraction layer, showcasing a typical flow of a holder getting a credential from an issuer, and the verification of the credential by a verifier.
 
 # Requirements
-_[Node.js](https://nodejs.org/en) version 16.0 or greater.
+-[Node.js](https://nodejs.org/en) version 16.0 or greater.
 
-_A code editor to inspect the code, like [Visual Studio Code](https://code.visualstudio.com/).
+-A code editor to inspect the code, like [Visual Studio Code](https://code.visualstudio.com/).
 
 # Usage
 1. Clone the repository:
