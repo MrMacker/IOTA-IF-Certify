@@ -14,10 +14,10 @@ This project is a proof of concept of decentralized identity and verifiable cred
    - cd iota-if-certify
 
 3. Install the dependencies:
-  - npm install
+   - npm install
 
 4. Build the project:
-  - npm run build
+   - npm run build
 
 5. Run the program:
    - npm run Hans-example
