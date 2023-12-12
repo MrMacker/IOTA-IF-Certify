@@ -1,5 +1,5 @@
 # IOTA-IF-Certify
-IOTA-IF-Certify provides a tool to manage identities and credentials as holder and issuer and a tool to verify these credentials and their attributes as verifier.
+This project is a proof of concept of decentralized identity and verifiable credentials on IOTA decentralized ledger technology. It contains an abstraction layer to the IOTA Identity library, to more clearly indicate what steps are needed to create and verify decentralized identities and verifiable credentials. It also contains an example using this abstraction layer, showcasing a typical flow of a holder getting a credential from an issuer, and the verification of the credential by a verifier.
 
 # Usage
 1. Clone the repository:
