@@ -1,5 +1,5 @@
 {
-  "name": "iota-certify",
+  "name": "iota-if-certify",
   "version": "0.1.0",
   "description": "Manage and verify identities and credentials",
   "author": "J.L. van den Hout <jlvandenhout@gmail.com>",
