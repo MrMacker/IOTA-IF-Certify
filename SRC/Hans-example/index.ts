@@ -43,7 +43,7 @@ async function main() {
   // Let the CRU request credentials from Hans.
   // In this proof of concept the request and response are simply passed to
   // the appropriate functions. In a production grade program, it is adviced
-  // to implement a standardized exchange specification, like [OpenID](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html).
+  // to implement a standardised exchange specification, like [OpenID](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html).
   console.log("Requesting a presentation from Hans...");
   const request = await cru
     .generatePresentationRequest()
