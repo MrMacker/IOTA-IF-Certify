@@ -1,18 +1,1 @@
-{
-  "name": "iota-if-certify",
-  "version": "0.1.0",
-  "description": "Manage and verify identities and credentials",
-  "author": "Mark Anthony McLean <markmclean004@gmail.com.com>",
-  "scripts": {
-    "build": "tsc",
-    "Hans-example": "node build/Hans-example"
-  },
-  "dependencies": {
-    "@iota/identity-wasm": "rc",
-    "@iota/sdk-wasm": "latest"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "5.2.2"
-  }
-}
+
