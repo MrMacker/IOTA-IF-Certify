@@ -8,7 +8,7 @@ This project is a proof of concept of decentralized identity and verifiable cred
 
 # Usage
 1. Clone the repository:
-   - git clone https://github.com/MrMacker/IOTA-IF-Certify
+   - git clone 
 
 2. Change directory to the root of the repository:
    - cd iota-if-certify
