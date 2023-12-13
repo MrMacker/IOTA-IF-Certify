@@ -2,7 +2,7 @@
   "name": "iota-if-certify",
   "version": "0.1.0",
   "description": "Manage and verify identities and credentials",
-  "author": "mArk Anthony McLean <markmclean004@gmail.com.com>",
+  "author": "Mark Anthony McLean <markmclean004@gmail.com.com>",
   "scripts": {
     "build": "tsc",
     "Hans-example": "node build/Hans-example"
