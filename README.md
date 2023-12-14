@@ -1,5 +1,5 @@
 # IOTA-IF-Certify
-This project is a proof of concept of decentralized identity and verifiable credentials on IOTA decentralized ledger technology. It contains an abstraction layer to the IOTA Identity library, to more clearly indicate what steps are needed to create and verify decentralized identities and verifiable credentials. It also contains an example using this abstraction layer, showcasing a typical flow of a holder getting a credential from an issuer, and the verification of the credential by a verifier.
+This project is a proof of concept of decentralised identity and verifiable credentials on IOTA decentralised ledger technology. It contains an abstraction layer to the IOTA Identity library, to more clearly indicate what steps are needed to create and verify decentralised identities and verifiable credentials. It also contains an example using this abstraction layer, showcasing a typical flow of a holder getting a credential from an issuer, and the verification of the credential by a verifier.
 
 # Requirements
 - [Node.js](https://nodejs.org/en) version 16.0 or greater.
