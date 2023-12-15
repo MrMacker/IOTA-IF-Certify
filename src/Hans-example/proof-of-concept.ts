@@ -1,4 +1,3 @@
-
 import { Credential, Timestamp } from "@iota/identity-wasm/node";
 import { Client } from "@iota/sdk-wasm/node";
 import { EXPLORER, NODE, FAUCET } from "../constants";
@@ -15,7 +14,7 @@ class ProofOfConcept {
   async linkToExplorer(identity: Identity) {
     const did = identity.document.id().toString();
 
-    return `${EXPLORER}/identity-resolver/${did}`;
+    return `${EXPLORER}/search/${did}`;
   }
 
   async requestTokens(address: string) {
