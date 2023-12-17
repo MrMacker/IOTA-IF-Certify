@@ -23,7 +23,7 @@ This project is a proof of concept of decentralised identity and verifiable cred
    - npm run Hans-example
 
 # Scenario
-At this stage the software coding is not interactive yet and only verifies one credential - That of the former student Hans. - Proof of Concept Only (PoC)
+At this stage the software coding is not interactive yet and only verifies one credential - That of the former graduate Hans. - Proof of Concept Only (PoC)
 
 This proof of concept aims to provide tools to support the scenario where a holder (H) is required by a verifier (V) to hold credentials, issued by an issuer (I) from the set of issuers approved by the verifier, that prove H has sufficiently recent experience to fulfill duties on behalf of some party (X). Both H and X (on behalf of H), should be able to provide this proof to V, while H stays in control of what is shared and minimising the the need to query I.
 
